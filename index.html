@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eGrill — Parrillas Eléctricas de Acero Inoxidable</title>
+  <meta name="description" content="Parrillas eléctricas de acero inoxidable. Asá donde quieras, sin humo, sin problemas. Envío a todo el país.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #E81919;
+      --gray: #6D6E70;
+      --dark: #1D1D1F;
+      --bg: #F5F5F7;
+      --white: #FFFFFF;
+      --border: #E5E5E5;
+      --muted: #6E6E73;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body { font-family: var(--font); background: var(--white); color: var(--dark); line-height: 1.5; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      height: 58px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 2px; text-decoration: none; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
+    .logo-e { color: var(--red); }
+    .logo-grill { color: var(--gray); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--dark); font-size: 14px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--red); color: white; text-decoration: none;
+      padding: 9px 18px; border-radius: 50px; font-size: 13px; font-weight: 600;
+      transition: opacity .2s;
+    }
+    .nav-cta:hover { opacity: .85; }
+
+    /* HERO */
+    .hero { padding: 100px 24px 80px; text-align: center; background: var(--white); }
+    .hero-eyebrow {
+      display: inline-block; font-size: 12px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--red);
+      background: rgba(232,25,25,.08); padding: 5px 14px; border-radius: 50px; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 68px); font-weight: 800;
+      letter-spacing: -.03em; line-height: 1.05;
+      color: var(--dark); max-width: 780px; margin: 0 auto 24px;
+    }
+    .hero h1 span { color: var(--red); }
+    .hero p { font-size: 19px; color: var(--muted); max-width: 520px; margin: 0 auto 40px; }
+    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--red); color: white; text-decoration: none;
+      padding: 15px 30px; border-radius: 50px; font-size: 16px; font-weight: 600;
+      transition: opacity .2s; box-shadow: 0 4px 20px rgba(232,25,25,.3);
+    }
+    .btn-primary:hover { opacity: .88; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--dark); text-decoration: none;
+      padding: 15px 30px; border-radius: 50px; font-size: 16px; font-weight: 600;
+      border: 1.5px solid var(--border); transition: border-color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--dark); }
+
+    /* STATS */
+    .stats { background: var(--bg); padding: 48px 24px; }
+    .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 32px; text-align: center; }
+    .stat-number { font-size: 36px; font-weight: 800; color: var(--dark); letter-spacing: -.02em; }
+    .stat-number span { color: var(--red); }
+    .stat-label { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+    /* SECTION BASE */
+    .section { padding: 88px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { margin-bottom: 52px; }
+    .section-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+    .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -.025em; color: var(--dark); }
+    .section-sub { font-size: 17px; color: var(--muted); margin-top: 12px; max-width: 480px; }
+
+    /* PRODUCTS GRID */
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; }
+
+    .product-card {
+      background: var(--bg); border-radius: 20px; overflow: hidden;
+      transition: transform .3s cubic-bezier(.25,.46,.45,.94), box-shadow .3s;
+      display: flex; flex-direction: column;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,.1); }
+
+    .product-img {
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+      background: linear-gradient(135deg, #E8E8ED, #D1D1D6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 56px; color: #C7C7CC;
+    }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .product-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+    .product-cat { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+    .product-name { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 8px; line-height: 1.25; }
+    .product-desc { font-size: 14px; color: var(--muted); line-height: 1.55; flex: 1; margin-bottom: 20px; }
+    .product-price { font-size: 26px; font-weight: 800; color: var(--dark); letter-spacing: -.02em; margin-bottom: 14px; }
+    .product-price small { font-size: 13px; font-weight: 400; color: var(--muted); }
+
+    .btn-buy {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 13px 20px;
+      background: var(--dark); color: white; border: none;
+      border-radius: 12px; font-size: 14px; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: background .2s;
+    }
+    .btn-buy:hover { background: #333; }
+
+    /* SKELETON */
+    .skeleton { background: linear-gradient(90deg,#E8E8ED 25%,#F5F5F7 50%,#E8E8ED 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    /* HOW TO BUY */
+    .how { background: var(--bg); }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 48px; margin-top: 52px; }
+    .step { text-align: center; }
+    .step-num {
+      width: 52px; height: 52px; background: var(--red); color: white; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 800; margin: 0 auto 20px;
+      box-shadow: 0 8px 20px rgba(232,25,25,.3);
+    }
+    .step h3 { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+    .step p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: white; padding: 64px 24px 36px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: flex; justify-content: space-between; gap: 40px; margin-bottom: 52px; flex-wrap: wrap; }
+    .footer-brand .footer-logo { font-size: 26px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 12px; }
+    .footer-brand .footer-logo .e { color: var(--red); }
+    .footer-brand .footer-logo .g { color: #86868B; }
+    .footer-tagline { font-size: 14px; color: #86868B; max-width: 200px; line-height: 1.6; }
+    .footer-col h4 { font-size: 13px; font-weight: 600; color: #AEAEB2; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 12px; }
+    .footer-col a { color: #86868B; text-decoration: none; font-size: 14px; transition: color .2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { border-top: 1px solid #2D2D2F; padding-top: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; color: #6E6E73; }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero { padding: 64px 20px 52px; }
+      .section { padding: 60px 20px; }
+      .footer-top { flex-direction: column; gap: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><span class="logo-e">e</span><span class="logo-grill">Grill</span></a>
+    <ul class="nav-links">
+      <li><a href="#parrillas">Parrillas</a></li>
+      <li><a href="#repuestos">Repuestos</a></li>
+      <li><a href="#como-comprar">¿Cómo comprar?</a></li>
+    </ul>
+    <a href="https://wa.me/5492364260148" target="_blank" class="nav-cta">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.845L.057 23.547a.5.5 0 0 0 .609.61l5.805-1.522A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.667-.52-5.176-1.424l-.371-.222-3.847 1.009 1.027-3.748-.241-.386A9.937 9.937 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow">Parrillas Eléctricas · Fabricación Argentina</p>
+  <h1>Asá donde quieras.<br><span>Sin humo.</span> Sin complicaciones.</h1>
+  <p>Parrillas eléctricas de acero inoxidable para departamentos, patios y espacios sin ventilación. Envío a todo el país.</p>
+  <div class="hero-actions">
+    <a href="#parrillas" class="btn-primary">Ver parrillas</a>
+    <a href="#como-comprar" class="btn-secondary">¿Cómo comprar?</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stats-inner">
+    <div><div class="stat-number">+<span>80</span></div><div class="stat-label">Clientes satisfechos en MercadoLibre</div></div>
+    <div><div class="stat-number"><span>100</span>%</div><div class="stat-label">Acero inoxidable de alta calidad</div></div>
+    <div><div class="stat-number"><span>0</span></div><div class="stat-label">Comisiones en compra directa</div></div>
+    <div><div class="stat-number" style="font-size:28px">Todo <span>el país</span></div><div class="stat-label">Envíos por Andreani y correo</div></div>
+  </div>
+</div>
+
+<section class="section" id="parrillas">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-eyebrow">Catálogo</p>
+      <h2 class="section-title">Parrillas Eléctricas</h2>
+      <p class="section-sub">Modelos para cada espacio y necesidad. Todos en acero inoxidable con envío gratis.</p>
+    </div>
+    <div class="products-grid" id="grid-parrillas">
+      <div class="product-card"><div class="product-img skeleton" style="aspect-ratio:1"></div><div class="product-body"><div class="skeleton" style="height:12px;width:60px;margin-bottom:10px"></div><div class="skeleton" style="height:20px;width:80%;margin-bottom:10px"></div><div class="skeleton" style="height:14px;margin-bottom:6px"></div><div class="skeleton" style="height:14px;width:70%;margin-bottom:20px"></div><div class="skeleton" style="height:30px;width:50%;margin-bottom:14px"></div><div class="skeleton" style="height:44px"></div></div></div>
+      <div class="product-card"><div class="product-img skeleton" style="aspect-ratio:1"></div><div class="product-body"><div class="skeleton" style="height:12px;width:60px;margin-bottom:10px"></div><div class="skeleton" style="height:20px;width:80%;margin-bottom:10px"></div><div class="skeleton" style="height:14px;margin-bottom:6px"></div><div class="skeleton" style="height:14px;width:70%;margin-bottom:20px"></div><div class="skeleton" style="height:30px;width:50%;margin-bottom:14px"></div><div class="skeleton" style="height:44px"></div></div></div>
+      <div class="product-card"><div class="product-img skeleton" style="aspect-ratio:1"></div><div class="product-body"><div class="skeleton" style="height:12px;width:60px;margin-bottom:10px"></div><div class="skeleton" style="height:20px;width:80%;margin-bottom:10px"></div><div class="skeleton" style="height:14px;margin-bottom:6px"></div><div class="skeleton" style="height:14px;width:70%;margin-bottom:20px"></div><div class="skeleton" style="height:30px;width:50%;margin-bottom:14px"></div><div class="skeleton" style="height:44px"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="repuestos" style="background:var(--bg)">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-eyebrow">Repuestos Originales</p>
+      <h2 class="section-title">Resistencias y Cables</h2>
+      <p class="section-sub">Repuestos originales para toda la línea Caloblin y eGrill. Compatibilidad garantizada.</p>
+    </div>
+    <div class="products-grid" id="grid-repuestos"></div>
+  </div>
+</section>
+
+<section class="section how" id="como-comprar">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-eyebrow">Proceso de compra</p>
+      <h2 class="section-title">Simple. Sin intermediarios.</h2>
+      <p class="section-sub">Comprás directo con nosotros y ahorrás las comisiones de los marketplaces.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Elegí tu producto</h3>
+        <p>Explorá el catálogo y encontrá la parrilla o repuesto que necesitás.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Abrí el chat</h3>
+        <p>Hacé clic en "Comprar por WhatsApp" y te enviamos un mensaje pre-cargado con tu producto.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Pagá y recibís</h3>
+        <p>Acordamos el pago por transferencia bancaria y coordinamos el envío a tu domicilio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo"><span class="e">e</span><span class="g">Grill</span></div>
+        <p class="footer-tagline">Parrillas eléctricas de acero inoxidable. Fabricación argentina.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Productos</h4>
+        <ul>
+          <li><a href="#parrillas">Parrillas Eléctricas</a></li>
+          <li><a href="#repuestos">Repuestos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/5492364260148" target="_blank">WhatsApp +54 9 2364 260148</a></li>
+          <li><a href="mailto:caloblin.ar@gmail.com">caloblin.ar@gmail.com</a></li>
+          <li><a href="https://instagram.com/caloblin.ar" target="_blank">@caloblin.ar</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2024 eGrill. Todos los derechos reservados.</p>
+      <p class="footer-copy">Fabricación argentina 🇦🇷</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const SB_URL = 'https://tcckwzcjxrvclcyngwgm.supabase.co';
+  const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRjY2t3emNqeHJ2Y2xjeW5nd2dtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY3MTM0NzcsImV4cCI6MjEwMjI4OTQ3N30.o-oRxxJY6j49B8GNkvA6RlU3SpM2OrkQ8Kqz4gTE-uE';
+  const WA = '5492364260148';
+
+  function fmt(n) { return '$ ' + Number(n).toLocaleString('es-AR'); }
+
+  function waUrl(p) {
+    const msg = `Hola! Me interesa comprar:\n\n*${p.name}*\nPrecio: ${fmt(p.price)}\n\n¿Tienen disponibilidad y cómo sería el envío?`;
+    return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+  }
+
+  function card(p) {
+    const img = p.image_url
+      ? `<img src="${p.image_url}" alt="${p.name}" loading="lazy">`
+      : `<div class="product-img" style="font-size:56px;color:#C7C7CC;background:linear-gradient(135deg,#E8E8ED,#D1D1D6)">🔥</div>`;
+    return `
+      <div class="product-card">
+        <div class="product-img">${img}</div>
+        <div class="product-body">
+          <p class="product-cat">${p.category === 'parrilla' ? 'Parrilla eléctrica' : 'Repuesto original'}</p>
+          <h3 class="product-name">${p.name}</h3>
+          <p class="product-desc">${p.description || ''}</p>
+          <p class="product-price">${fmt(p.price)} <small>IVA incluido · Envío gratis</small></p>
+          <a href="${waUrl(p)}" target="_blank" class="btn-buy">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.528 5.845L.057 23.547a.5.5 0 0 0 .609.61l5.805-1.522A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.667-.52-5.176-1.424l-.371-.222-3.847 1.009 1.027-3.748-.241-.386A9.937 9.937 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Comprar por WhatsApp
+          </a>
+        </div>
+      </div>`;
+  }
+
+  async function load() {
+    const r = await fetch(`${SB_URL}/rest/v1/egrill_products?active=eq.true&order=sort_order.asc`, {
+      headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` }
+    });
+    const products = await r.json();
+    document.getElementById('grid-parrillas').innerHTML = products.filter(p=>p.category==='parrilla').map(card).join('');
+    document.getElementById('grid-repuestos').innerHTML = products.filter(p=>p.category==='repuesto').map(card).join('');
+  }
+
+  load();
+</script>
+</body>
+</html>
