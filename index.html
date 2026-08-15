@@ -229,7 +229,7 @@
 
 <section class="hero">
   <div class="hero-video-wrap">
-    <iframe src="https://www.youtube.com/embed/N2NpQvE8hho?autoplay=1&loop=1&mute=1&playlist=N2NpQvE8hho&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&start=3" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe id="yt-player" src="https://www.youtube.com/embed/N2NpQvE8hho?autoplay=1&loop=1&mute=1&playlist=N2NpQvE8hho&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&start=3&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     <div class="hero-video-cover" id="vcover"></div>
   </div>
   <p class="hero-eyebrow">Parrillas Eléctricas<br>de Industria Argentina</p>
@@ -394,10 +394,23 @@
   }
   trackVisit();
 
-  setTimeout(() => {
-    const c = document.getElementById('vcover');
-    if (c) c.classList.add('hidden');
-  }, 2000);
+  window.onYouTubeIframeAPIReady = function() {
+    new YT.Player('yt-player', {
+      events: {
+        onStateChange: function(e) {
+          if (e.data === YT.PlayerState.PLAYING) {
+            setTimeout(() => {
+              const c = document.getElementById('vcover');
+              if (c) c.classList.add('hidden');
+            }, 1500);
+          }
+        }
+      }
+    });
+  };
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
 </script>
 </body>
 </html>
