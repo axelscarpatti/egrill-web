@@ -212,7 +212,12 @@
   </style>
 </head>
 <body>
-<script>if('scrollRestoration'in history){history.scrollRestoration='manual';}window.scrollTo(0,0);</script>
+<script>
+  if('scrollRestoration'in history){history.scrollRestoration='manual';}
+  window.scrollTo(0,0);
+  window.addEventListener('load',function(){window.scrollTo(0,0);});
+  window.addEventListener('pageshow',function(e){window.scrollTo(0,0);});
+</script>
 
 <nav>
   <div class="nav-inner">
@@ -379,8 +384,6 @@
     document.getElementById('grid-repuestos').innerHTML = products.filter(p=>p.category==='repuesto').map(card).join('');
   }
 
-  window.onbeforeunload = function() { window.scrollTo(0, 0); };
-  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
   window.scrollTo(0, 0);
   load();
 
