@@ -54,7 +54,7 @@
     }
     .hero-video-wrap::after {
       content: ''; position: absolute; inset: 0;
-      background: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.10);
     }
     .hero-video-wrap iframe {
       position: absolute; top: 50%; left: 50%;
@@ -79,10 +79,11 @@
       font-size: clamp(38px, 6vw, 68px); font-weight: 800;
       letter-spacing: -.03em; line-height: 1.05;
       color: var(--dark); max-width: 780px; margin: 0 auto 24px;
-      text-shadow: 0 0 20px rgba(255,255,255,.9), 0 0 40px rgba(255,255,255,.7);
+      -webkit-text-stroke: 1.5px white;
+      text-shadow: none;
     }
     .hero h1 span { color: var(--red); }
-    .hero p { font-size: 19px; color: var(--muted); max-width: 520px; margin: 0 auto 40px; text-shadow: 0 0 16px rgba(255,255,255,1), 0 0 32px rgba(255,255,255,.8); }
+    .hero p { font-size: 19px; color: var(--muted); max-width: 520px; margin: 0 auto 40px; -webkit-text-stroke: 1px white; }
     .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
