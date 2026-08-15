@@ -79,11 +79,11 @@
       font-size: clamp(38px, 6vw, 68px); font-weight: 800;
       letter-spacing: -.03em; line-height: 1.05;
       color: var(--dark); max-width: 780px; margin: 0 auto 24px;
-      -webkit-text-stroke: 1.5px white;
-      text-shadow: none;
+      -webkit-text-stroke: 0;
+      text-shadow: -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white, 2px 2px 0 white, 0 2px 0 white, 2px 0 0 white, 0 -2px 0 white, -2px 0 0 white;
     }
     .hero h1 span { color: var(--red); }
-    .hero p { font-size: 19px; color: var(--muted); max-width: 520px; margin: 0 auto 40px; -webkit-text-stroke: 1px white; }
+    .hero p { font-size: 19px; color: var(--muted); max-width: 520px; margin: 0 auto 40px; text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white; }
     .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
@@ -397,7 +397,7 @@
   setTimeout(() => {
     const c = document.getElementById('vcover');
     if (c) c.classList.add('hidden');
-  }, 5000);
+  }, 2000);
 </script>
 </body>
 </html>
