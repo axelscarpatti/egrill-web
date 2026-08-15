@@ -83,7 +83,7 @@
       text-shadow: -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white, 2px 2px 0 white, 0 2px 0 white, 2px 0 0 white, 0 -2px 0 white, -2px 0 0 white;
     }
     .hero h1 span { color: var(--red); }
-    .hero p { font-size: 19px; color: var(--muted); max-width: 520px; margin: 0 auto 40px; text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white; }
+    .hero p { font-size: 19px; color: var(--dark); font-weight: 600; max-width: 520px; margin: 0 auto 40px; background: rgba(255,255,255,0.75); display: inline-block; padding: 8px 16px; border-radius: 10px; }
     .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
@@ -94,11 +94,11 @@
     .btn-primary:hover { opacity: .88; }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: var(--dark); text-decoration: none;
-      padding: 15px 30px; border-radius: 50px; font-size: 16px; font-weight: 600;
-      border: 1.5px solid var(--border); transition: border-color .2s;
+      background: rgba(255,255,255,0.9); color: var(--dark); text-decoration: none;
+      padding: 15px 30px; border-radius: 50px; font-size: 16px; font-weight: 700;
+      border: 2px solid var(--dark); transition: all .2s;
     }
-    .btn-secondary:hover { border-color: var(--dark); }
+    .btn-secondary:hover { background: white; border-color: var(--dark); }
 
     /* STATS */
     .stats { background: var(--bg); padding: 48px 24px; }
