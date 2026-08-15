@@ -214,9 +214,10 @@
 <body>
 <script>
   if('scrollRestoration'in history){history.scrollRestoration='manual';}
-  window.scrollTo(0,0);
-  window.addEventListener('load',function(){window.scrollTo(0,0);});
-  window.addEventListener('pageshow',function(e){window.scrollTo(0,0);});
+  function goTop(){window.scrollTo({top:0,left:0,behavior:'instant'});document.documentElement.scrollTop=0;document.body.scrollTop=0;}
+  goTop();
+  window.addEventListener('load',function(){goTop();setTimeout(goTop,50);setTimeout(goTop,200);});
+  window.addEventListener('pageshow',function(){goTop();setTimeout(goTop,50);setTimeout(goTop,200);});
 </script>
 
 <nav>
