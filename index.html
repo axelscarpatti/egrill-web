@@ -300,6 +300,9 @@
       <p class="footer-copy">© 2024 eGrill. Todos los derechos reservados.</p>
       <p class="footer-copy">Fabricación argentina 🇦🇷</p>
     </div>
+    <div style="text-align:center;margin-top:20px">
+      <p style="font-size:11px;color:#3D3D3F;letter-spacing:.05em" id="vc"></p>
+    </div>
   </div>
 </footer>
 
@@ -345,6 +348,23 @@
   }
 
   load();
+
+  async function trackVisit() {
+    try {
+      const r = await fetch(`${SB_URL}/rest/v1/egrill_visits?id=eq.1`, {
+        headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` }
+      });
+      const rows = await r.json();
+      const current = rows[0]?.count || 0;
+      await fetch(`${SB_URL}/rest/v1/egrill_visits?id=eq.1`, {
+        method: 'PATCH',
+        headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ count: current + 1 })
+      });
+      document.getElementById('vc').textContent = current + 1;
+    } catch(e) {}
+  }
+  trackVisit();
 </script>
 </body>
 </html>
