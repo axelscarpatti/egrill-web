@@ -401,6 +401,18 @@
     } catch(e) {}
   }
   trackVisit();
+
+  // Force video play on iOS (bypasses Low Power Mode block)
+  const vid = document.querySelector('.video-inner video');
+  if (vid) {
+    const tryPlay = () => { vid.play().catch(()=>{}); };
+    tryPlay();
+    const obs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) { tryPlay(); }
+    }, { threshold: 0.1 });
+    obs.observe(vid);
+    document.addEventListener('touchstart', tryPlay, { once: true });
+  }
 </script>
 </body>
 </html>
