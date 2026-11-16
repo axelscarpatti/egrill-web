@@ -96,11 +96,6 @@
     .hero-img { display: flex; justify-content: center; padding-bottom: 80px; margin-top: 28px; }
     .hero-img img { width: 620px; max-width: 90%; object-fit: contain; }
 
-    /* VIDEO */
-    .video-section { background: var(--black); position: relative; }
-    .video-section::before { content: ''; display: block; height: 100px; background: linear-gradient(to bottom, var(--bg), var(--black)); }
-    .video-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px 80px; display: flex; justify-content: center; }
-    .video-inner video { width: 100%; max-width: 860px; border-radius: 16px; display: block; }
 
     /* ANCHOR TARGETS */
     .anchor-target { display: block; height: 0; scroll-margin-top: 80px; }
@@ -188,8 +183,6 @@
       .steps { grid-template-columns: 1fr; gap: 36px; }
       .footer-top { flex-direction: column; gap: 32px; }
       footer { padding: 48px 20px 28px; }
-      .video-inner { padding: 0 20px 48px; }
-      .video-section::before { height: 60px; }
     }
   </style>
 </head>
@@ -245,13 +238,6 @@
   </div>
 </div>
 
-<section class="video-section">
-  <div class="video-inner">
-    <video autoplay muted loop playsinline preload="auto" style="min-height:200px;">
-      <source src="https://nbyysqgmjbkgckcvkqgs.supabase.co/storage/v1/object/public/Egrill-media/IMG_0148%20(1).mp4" type="video/mp4">
-    </video>
-  </div>
-</section>
 
 <section class="section" id="parrillas">
   <div class="section-inner">
@@ -410,17 +396,6 @@
   }
   trackVisit();
 
-  // Force video play on iOS (bypasses Low Power Mode block)
-  const vid = document.querySelector('.video-inner video');
-  if (vid) {
-    const tryPlay = () => { vid.play().catch(()=>{}); };
-    tryPlay();
-    const obs = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) { tryPlay(); }
-    }, { threshold: 0.1 });
-    obs.observe(vid);
-    document.addEventListener('touchstart', tryPlay, { once: true });
-  }
 </script>
 </body>
 </html>
