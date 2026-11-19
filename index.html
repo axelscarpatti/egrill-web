@@ -338,7 +338,7 @@
         <div class="product-img">${p.name.includes('E1') ? '<span class="badge-sale">Sale</span>' : ''}${img}</div>
         <div class="product-body">
           <p class="product-price">${fmt(p.price)}</p>
-          <p class="product-price-note">IVA incluido · <span style="color:#FE6800">envío incluido</span></p>
+          <p class="product-price-note">IVA incluido · <span style="color:#FE6800">+ envío a cotizar</span></p>
           <p class="product-price-neto">Precio sin impuestos nacionales: ${fmt(Math.round(p.price / 1.21 * 100) / 100)}</p>
           <p class="product-cat">${p.category === 'parrilla' ? 'Parrilla eléctrica' : 'Repuesto original'}</p>
           <h3 class="product-name">${p.name}</h3>
